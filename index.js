@@ -11,9 +11,9 @@ const listElement = document.querySelector(".to-do__list");
 const formElement = document.querySelector(".to-do__form");
 const inputElement = document.querySelector(".to-do__input");
 
-function loadTasks() {
+function loadTasks(defaultItems) {
   const savedTasks = localStorage.getItem("toDoTasks");
-  const tasks = savedTasks ? JSON.parse(savedTasks) : items;
+  const tasks = savedTasks ? JSON.parse(savedTasks) : defaultItems;
 
   return tasks;
 }
@@ -81,7 +81,7 @@ formElement.addEventListener("submit", (e) => {
   inputElement.value = "";
 });
 
-items = loadTasks();
+items = loadTasks(items);
 items.forEach((item) => {
   const taskElement = createItem(item);
   listElement.append(taskElement);
